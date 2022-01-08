@@ -16,9 +16,9 @@ struct Ball {
     Vec3 p;
     float r;
     Vec3 v; // 速度，单位为dm/s
-    float density = 1.0f; // 密度，单位为kg/dm^3
-    float elastic = 1.0f; // 弹性系数，0.0~1.0
     int color = 0;
+    float elastic = 1.0f; // 弹性系数，0.0~1.0
+    float density = 1.0f; // 密度，单位为kg/dm^3
 };
 
 extern std::vector<Ball> balls;

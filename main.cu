@@ -1,6 +1,7 @@
 #include <iostream>
 #include "core.cuh"
 #include "render.h"
+#include "dataGenerator.h"
 
 void printDeviceInfo() {
     int dev = 0;
@@ -20,8 +21,7 @@ void printDeviceInfo() {
 }
 
 int main() {
-    // TODO 初始化balls
-
+    generateData(balls, 1000);
     initRender();
 
     while (true) {
