@@ -2,6 +2,7 @@
 #include "core.cuh"
 #include "render.h"
 #include "dataGenerator.h"
+#include "dbg.h"
 #include <getopt.h>
 #include <signal.h>
 #include <raylib.h>
@@ -47,7 +48,7 @@ int main(int argc, char *argv[]) {
     bool headless = false;
     int frames = 0;
     double g = 9.8;
-    while ((opt = getopt_long(argc, argv, "n:h", long_option, nullptr)) != -1) {
+    while ((opt = getopt_long(argc, argv, "n:hg:f:", long_option, nullptr)) != -1) {
         switch (opt) {
             case 'e':
                 std::cout << helpStr;
@@ -69,6 +70,7 @@ int main(int argc, char *argv[]) {
     GRAVITY = (float) (10.0 * g);
     printDeviceInfo();
     generateData(balls, ballNum);
+//    dbgData();
     initRender(headless);
 
     int count = 0;

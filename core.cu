@@ -43,7 +43,7 @@ __device__ float distanceSquared(const Vec3 p1, const Vec3 p2) {
 }
 
 __device__ float vec3Norm(const Vec3 p) {
-    return p.x * p.x + p.y * p.y + p.z * p.z;
+    return sqrtf(p.x * p.x + p.y * p.y + p.z * p.z);
 }
 
 __device__ unsigned int getCellID(const int ix, const int iy, const int iz) {
@@ -214,7 +214,7 @@ __global__ void calculateCollisionImpulses(Vec3 *impulses, const CollisionCell *
                 auto m1 = getMass(devBalls[id1]), m2 = getMass(devBalls[id2]);
                 auto e = (devBalls[id1].elastic + devBalls[id2].elastic) / 2, ea1dm1am2 = (e + 1) / (m1 + m2);
                 auto centerLine = vec3Normalized(vec3Sub(devBalls[id2].p, devBalls[id1].p)); // 从球1球心指向球2球心的单位向量
-                auto vCLLen1 = vec3Dot(devBalls[id1].v, centerLine), vCLLen2 = vec3Dot(devBalls[id1].v,
+                auto vCLLen1 = vec3Dot(devBalls[id1].v, centerLine), vCLLen2 = vec3Dot(devBalls[id2].v,
                                                                                        centerLine); // 沿球心连线方向的速度分量
                 auto dvCLLen1 = (vCLLen2 - vCLLen1) * (ea1dm1am2 * m2), dvCLLen2 =
                         (vCLLen1 - vCLLen2) * (ea1dm1am2 * m1);
