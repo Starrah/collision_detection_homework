@@ -3,9 +3,8 @@
 
 #include <vector>
 
-#define GRAVITY 98.0f // 重力加速度，单位为dm/s^2
+extern float GRAVITY; // 重力加速度，单位为dm/s^2
 #define PI 3.14159265359f
-
 #define FPS 30
 
 struct Vec3 {

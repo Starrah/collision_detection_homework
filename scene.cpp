@@ -1,5 +1,7 @@
 #include "scene.h"
 
+float GRAVITY = 98.0f; // 重力加速度，单位为dm/s^2
+
 std::vector<Ball> balls;
 
 Vec3 worldSizeMin{-50.0f, -50.0f, -80.0f};

@@ -4,8 +4,12 @@
 #include <vector>
 #include "scene.h"
 
-void initRender();
+void initRender(bool headless = false);
 
 void render(std::vector<Ball> &balls);
+
+extern bool shouldClose;
+
+void printFPS();
 
 #endif //COLLISION_DETECTION_RENDER_H

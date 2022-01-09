@@ -7,9 +7,11 @@ struct BallType {
     float r;
 };
 
-std::vector<BallType> ballTypes{{6, 0, 1.0f},
-                                {2, 1, 2.0f},
-                                {1, 2, 3.0f}};
+std::vector<BallType> ballTypes{
+        {6, 0, 2.0f},
+        {3, 1, 3.0f},
+        {1, 2, 5.0f}
+};
 
 void generateData(std::vector<Ball> &balls, int count) {
     std::vector<int> accPortion;
@@ -38,7 +40,7 @@ void generateData(std::vector<Ball> &balls, int count) {
         auto &ballType = ballTypes[ballTypeIdx];
 
         Ball ball{{randX(e), randY(e), randZ(e)}, ballType.r, {randVx(e), randVy(e), randVz(e)}, ballType.color,
-                  randElastic(e)};
+                  std::min(randElastic(e), 1.0f)};
         balls.push_back(ball);
     }
 }
