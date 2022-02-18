@@ -4,17 +4,6 @@
 #include <thrust/device_ptr.h>
 #include <thrust/scan.h>
 
-__global__ void
-getArrFloat(float *result, const void *data, unsigned int count, unsigned int sizeOf, unsigned int offsetOf) {
-    auto thIdx = blockIdx.x * blockDim.x + threadIdx.x;
-    if (thIdx < count) result[thIdx] = *((float *) ((char *) data + thIdx * sizeOf + offsetOf));
-}
-
-__global__ void multiply(float *data, unsigned int count, float op2) {
-    auto thIdx = blockIdx.x * blockDim.x + threadIdx.x;
-    if (thIdx < count) data[thIdx] *= op2;
-}
-
 #define getArrFloat_B 512
 #define generateCellID_B 256
 #define generateCollisionCells_B 256
@@ -32,6 +21,17 @@ __global__ void multiply(float *data, unsigned int count, float op2) {
 #define CONTROL_SHIFT 21
 #define OBJECTID_MASK ((1 << CONTROL_SHIFT) - 1)
 #define COMMON_CELL_BITS_MASK 0xff000000
+
+__global__ void
+getArrFloat(float *result, const void *data, unsigned int count, unsigned int sizeOf, unsigned int offsetOf) {
+    auto thIdx = blockIdx.x * blockDim.x + threadIdx.x;
+    if (thIdx < count) result[thIdx] = *((float *) ((char *) data + thIdx * sizeOf + offsetOf));
+}
+
+__global__ void multiply(float *data, unsigned int count, float op2) {
+    auto thIdx = blockIdx.x * blockDim.x + threadIdx.x;
+    if (thIdx < count) data[thIdx] *= op2;
+}
 
 __device__ float flCe(const float value, const int b) {
     return (b == 0) ? value : ((b > 0) ? ceilf(value) : floorf(value));

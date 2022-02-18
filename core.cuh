@@ -4,6 +4,6 @@
 #include <vector>
 #include "scene.h"
 
-void update(std::vector<Ball> &, float dt);
+void update(std::vector<Ball> &balls, float dt);
 
 #endif //COLLISION_DETECTION_CORE_CUH

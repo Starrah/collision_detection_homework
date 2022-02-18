@@ -1,3 +1,4 @@
+// 此文件为raylib的example中提供，来源：https://github.com/raysan5/raylib/blob/master/examples/models/rlights.h
 /**********************************************************************************************
 *
 *   raylib.lights - Some useful functions to deal with lights data
